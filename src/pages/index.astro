@@ -1,0 +1,168 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+let fields = ["None Selected", "Econometrics", "Health", "Labor", "Development", "History", "Trade", "Urban", "Crime", "Theory"]
+
+let paper_parts = ["None Selected", "Introduction", "Motivation", "Literature Review", "Data", "Empirical Strategy", "Motivation", "Results", "Conclusion", "Theory"]
+---
+
+<BaseLayout>
+  <!-- Introduction -->
+  <div class="mt-12 border-gray-100 border-t-2 py-8">
+    <h1 class="text-4xl font-bold">Great Economics Writing</h1>
+    <p class="mt-6 text-lg text-gray-600">
+      We need your help making a crowd-sourced collection of great economics
+      writing. Our goal is to gather <b>100</b> great papers across fields and
+      across parts of the paper (beautiful intro; clear methodology; thorough
+      results; etc.). Once we hit <b>100</b>, we will publish the results and
+      create a dashboard to make finding papers easy.
+    </p>
+
+    <!-- 
+    <a class="inline-flex flex-row items-center mt-8 text-lg font-semibold text-picton-blue-700"
+      href="/results/">
+      View Results
+      <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-6 w-6" fill="none"
+        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
+    </a>
+    -->
+  </div>
+
+  <!-- Form -->
+  <form netlify netlify-honeypot name="papers" method="POST" action="/success/"
+    class="mt-12 border-gray-100 border-t-2 py-8">
+    <input type="hidden" name="form-name" value="paper" />
+    <h2 class="text-4xl font-bold">Submit a Paper</h2>
+
+    <!-- Paper details -->
+    <div class="mt-12 lg:grid lg:grid-cols-3 lg:gap-6">
+      <div class="lg:col-span-1">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Paper
+          Information</h3>
+        <p class="mt-1 text-sm text-gray-500">Give the details of the paper
+        </p>
+      </div>
+      <div class="mt-5 lg:mt-0 lg:col-span-2">
+        <div class="grid grid-cols-6 gap-6">
+          <div class="col-span-6">
+            <label for="title" class="block text-sm font-medium text-gray-700">
+              Paper Title
+            </label>
+            <input type="text" name="title" id="title"
+              class="mt-1 focus:ring-picton-blue-500 focus:border-picton-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+          </div>
+
+          <div class="col-span-6">
+            <label for="link" class="block text-sm font-medium text-gray-700">
+              Link <i>(open access preferred)</i>
+            </label>
+            <input type="text" name="link" id="link"
+              class="mt-1 focus:ring-picton-blue-500 focus:border-picton-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+          </div>
+
+          <div class="col-span-6">
+            <label for="authors"
+              class="block text-sm font-medium text-gray-700">
+              Authors <i>(seperate with commas)</i>
+            </label>
+            <input type="text" name="authors" id="authors"
+              class="mt-1 focus:ring-picton-blue-500 focus:border-picton-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+          </div>
+
+          <div class="col-span-6">
+            <label for="journal"
+              class="block text-sm font-medium text-gray-700">
+              Journal
+            </label>
+            <input type="text" name="journal" id="journal"
+              class="mt-1 focus:ring-picton-blue-500 focus:border-picton-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+          </div>
+
+          <div class="col-span-6 md:col-span-3">
+            <label for="primary-field"
+              class="block text-sm font-medium text-gray-700">
+              Primary Field
+            </label>
+            <select id="primary-field" name="primary-field"
+              class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-picton-blue-500 focus:border-picton-blue-500 sm:text-sm rounded-md"
+              default-value="None Selected">
+              { fields.map((field) => (<option>{field}</option>)) }
+            </select>
+          </div>
+
+          <div class="col-span-6 md:col-span-3">
+            <label for="secondary-field"
+              class="block text-sm font-medium text-gray-700">
+              Secondary Field <i>(optional)</i>
+            </label>
+            <select id="secondary-field" name="secondary-field"
+              class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-picton-blue-500 focus:border-picton-blue-500 sm:text-sm rounded-md"
+              default-value="None Selected">
+              { fields.map((field) => (<option>{field}</option>)) }
+            </select>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- What makes the writing great? -->
+    <div class="mt-12 lg:grid lg:grid-cols-3 lg:gap-6">
+      <div class="lg:col-span-1">
+        <h3 class="text-lg font-medium leading-6 text-gray-900">What makes the
+          writing great?</h3>
+        <p class="mt-1 text-sm text-gray-500">Tell us what you really love
+          about the paper
+        </p>
+      </div>
+      <div class="mt-5 lg:mt-0 lg:col-span-2">
+        <div class="grid grid-cols-6 gap-6">
+          <div class="col-span-6 md:col-span-3">
+            <label for="best-part"
+              class="block text-sm font-medium text-gray-700">
+              Best Part
+            </label>
+            <select id="best-part" name="best-part"
+              class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-picton-blue-500 focus:border-picton-blue-500 sm:text-sm rounded-md"
+              default-value="None Selected">
+              { paper_parts.map((part) => (<option>{part}</option>)) }
+            </select>
+          </div>
+
+          <div class="col-span-6 md:col-span-3">
+            <label for="second-best-part"
+              class="block text-sm font-medium text-gray-700">
+              Second Best Part <i>(optional)</i>
+            </label>
+            <select id="second-best-part" name="second-best-part"
+              class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-picton-blue-500 focus:border-picton-blue-500 sm:text-sm rounded-md"
+              default-value="None Selected">
+              { paper_parts.map((part) => (<option>{part}</option>)) }
+            </select>
+          </div>
+
+          <div class="col-span-6">
+            <label for="about" class="block text-sm font-medium text-gray-700">
+              A description of what you love in this paper
+            </label>
+            <div class="mt-1">
+              <textarea id="about" name="about" rows="3"
+                class="shadow-sm focus:ring-picton-blue-500 focus:border-picton-blue-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                placeholder="" default-value="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 flex justify-end">
+      <button type="submit"
+        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-picton-blue-600 hover:bg-picton-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-picton-blue-500">
+        Submit Paper
+      </button>
+    </div>
+  </form>
+</BaseLayout>
